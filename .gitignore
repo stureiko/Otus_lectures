@@ -1,0 +1,17 @@
+# Service and private folders
+Documents/
+Foto/
+Tex/
+Otus_open_day/
+tuition fees.xlsx
+.DS_Store
+.ipynb_checkpoints/
+Bayes theorem - 15 min.mp4
+Archive/
+iframe_figures/
+weather_example/
+*.jpg
+*.jpeg
+*.png
+*.gif
+~*
