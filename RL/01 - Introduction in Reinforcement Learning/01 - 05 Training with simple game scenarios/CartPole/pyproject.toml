@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "cartpole"
+version = "0.1.0"
+description = ""
+authors = ["Stureiko Igor <stureiko@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+gym = "0.25.2"
+torch = "^2.0.1"
+pygame = "^2.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

@@ -4,6 +4,7 @@ import math
 import matplotlib.pyplot as plt
 import warnings
 
+
 class SARSA:
     def __init__(self, env, epsilon=0.2, learning_rate=0.25, discount=0.95):
         self.env = env
@@ -80,7 +81,8 @@ class SARSA:
                 ep_rewards_table['avg'].append(avg_reward)
                 ep_rewards_table['min'].append(min(ep_rewards[-episode_display:]))
                 ep_rewards_table['max'].append(max(ep_rewards[-episode_display:]))
-                print(f"Episode:{episode} avg:{avg_reward} min:{min(ep_rewards[-episode_display:])} max:{max(ep_rewards[-episode_display:])}")
+                print(
+                    f"Episode:{episode} avg:{avg_reward} min:{min(ep_rewards[-episode_display:])} max:{max(ep_rewards[-episode_display:])}")
 
         self.env.close()
 
@@ -92,6 +94,7 @@ class SARSA:
         plt.ylabel('Average reward/Episode')
         plt.xlabel('Episodes')
         plt.show()
+
 
 def main():
     warnings.filterwarnings('ignore')
@@ -106,6 +109,7 @@ def main():
 
     agent = SARSA(env, epsilon=EPSILON, learning_rate=LEARNING_RATE, discount=DISCOUNT)
     agent.train(EPISODES, EPISODE_DISPLAY)
+
 
 if __name__ == '__main__':
     main()
