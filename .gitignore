@@ -15,3 +15,7 @@ weather_example/
 *.png
 *.gif
 ~*
+.idea/
+Ext-lib/
+*.pdf
+*.lock
