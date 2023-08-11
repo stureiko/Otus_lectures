@@ -101,8 +101,8 @@ def main():
     env = gym.make("CartPole-v1")
 
     # Hyperparamters
-    EPISODES = 100000
-    EPISODE_DISPLAY = 10000
+    EPISODES = 10000
+    EPISODE_DISPLAY = 1000
     LEARNING_RATE = 0.25
     EPSILON = 0.2
     DISCOUNT = 0.95

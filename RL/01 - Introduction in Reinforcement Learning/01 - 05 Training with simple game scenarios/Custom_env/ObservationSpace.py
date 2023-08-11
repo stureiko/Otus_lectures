@@ -1,6 +1,6 @@
 import numpy as np
 
-class observationSpace:
+class ObservationSpace:
     def __init__(self):
         self.shape = (5,)  # Форма пространства состояний
         self.num_bins = 10  # Количество интервалов для каждого элемента массива состояний

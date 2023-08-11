@@ -50,9 +50,9 @@ def main():
     action_n = 4
     # Создание агента SARSA с определенным количеством состояний и действий
     agent = SARSA(state_n, action_n)
-    episode_n = 500
+    episode_n = 1000
     # episode_n = 100
-    trajectory_len = 100
+    trajectory_len = 200
 
     for i in range(episode_n):
         obs = env.reset()

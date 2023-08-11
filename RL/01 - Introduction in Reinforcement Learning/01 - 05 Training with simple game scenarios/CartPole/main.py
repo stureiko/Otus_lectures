@@ -79,7 +79,7 @@ def get_elite_trajectories(trajectories, q_param):
 
 def main():
     # warnings.filterwarnings('ignore')
-    env = gym.make('CartPole-v1')
+    env = gym.make('CartPole-v0')
     state_dim = 4
     action_n = 2
 
