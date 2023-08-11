@@ -19,3 +19,7 @@ weather_example/
 Ext-lib/
 *.pdf
 *.lock
+
+*.zip
+
+*.mp4
