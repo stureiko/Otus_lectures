@@ -176,7 +176,7 @@ class DQNAgent(object):
         else:
             num_episodes = 600
 
-        for i_episode in tqdm(range(num_episodes)):
+        for i_episode in tqdm(range(num_episodes), desc='learning episodes'):
             # Initialize the environment and get it's state
             self.state, self.info = self.env.reset()
             self.state = torch.tensor(self.state, dtype=torch.float32, device=self.device).unsqueeze(0)
@@ -211,13 +211,14 @@ class DQNAgent(object):
 
                 if self.done:
                     self.episode_durations.append(t + 1)
-                    self.plot_durations()
+                    # self.plot_durations()
                     break
 
         print('Complete')
         self.plot_durations(show_result=True)
         plt.ioff()
         plt.show()
+
 
 def main():
     env = gym.make("CartPole-v1")
