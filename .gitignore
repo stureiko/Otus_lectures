@@ -1,7 +1,6 @@
 # Service and private folders
 Documents/
 Foto/
-Tex/
 Otus_open_day/
 tuition fees.xlsx
 .DS_Store
@@ -23,3 +22,10 @@ Ext-lib/
 *.zip
 
 *.mp4
+# TeX service files
+*.aux
+*.blg
+*.log
+*.out
+*.gz
+*.toc
