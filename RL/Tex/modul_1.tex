@@ -1,0 +1,163 @@
+\chapter{Основные алгоритмы}
+\section{Cross-entropy method}
+Алгоритм кросс-энтропии относится к классу алгоритмов динамического программирования.
+
+Данный алгоритм применим при следующих ограничениях:
+\begin{itemize}
+	\item конечное пространство состояний;
+	\item конечное пространство действий;
+	\item детерминированная функция перехода - т.е по текущему состоянию и текущему действию \textbf{однозначно} определяется следующее состояние;
+	\item детерминированное начальное состояние - т.е начальное состояние для задачи \textbf{определено однозначным образом}; 
+\end{itemize}
+
+В задаче обучения с подкреплением мы хотим найти такую политику, которая максимизирует мат ожидание финальной награды.
+
+Тогда политику можно представить в виде матрицы. И задача обучения с подкреплением является задачей конечномерной оптимизации.
+
+\subsection{Алгоритм кросс энтропии}
+
+\begin{itemize}
+	\item Устанавливаем начальную политику $\pi_0$;
+	\item Устанавливаем количество шагов оптимизации $N$;
+	\item Устанавливаем параметр $q \in (0, 1)$ - по смыслу это параметр (\%) для отбора <<элитных>> траекторий; 
+	\item Оцениваем политику (итерация по $n \in [0, N]$) (Policy evaluation):
+	\begin{itemize}
+		\item Устанавливаем $K$ - количество траекторий для оценки политики;
+		\item Проходим по системе в соответствии с текущей политикой $K$ раз и получаем оценку мат ожидания суммарной награды: $$\mathbb{E}_{\pi_n} = \frac{1}{K}\sum_{k=1}^{K}G(\tau_k)$$
+	\end{itemize}
+	\item Улучшение политики (Policy improvement):
+	\begin{itemize}
+		\item Выбираем $q$\% <<элитных>> траекторий, т.е такие траектории награда в который больше $q$-квантиля;
+		\item обновляем политику по следующему правилу: для каждого состояния и действия считаем сколько пар (действие|состояние) оказалось в <<элитных>> траекториях и делим на количество раз состояния в <<элитных>> траекториях: 
+		$$\pi_{n+1}(a|s) = \frac{ \textrm{ number of pair } (a|s) \textrm{ in }\tau_n}{ \textrm{ number of } s \textrm{ in } \tau_n}$$ 
+	\end{itemize}
+\end{itemize}
+
+По смыслу: у нас реализовалось несколько <<элитных>> траекторий с хорошей наградой и мы хотим обновить нашу политику таким образом, что бы она больше соответствовала тем действиям, которые реализовались в этих <<элитных>> траекториях.
+
+Предположим, что при формировании <<элитных>> траекторий у нас в состоянии $s$ оказалось именно действие $a$, значит при обновлении политики эта дробь будет равна 1 и в следующей итерации политики вероятность из состояния $s$ совершить действие $a$ будет равно 1, т.е новая политика будет брать то действие в каждом состоянии, которое приносит максимальную награду.
+
+\subsection{Реализация в коде}
+
+Ниже представлена реализация алгоритма на Python.
+
+\lstset{frame=tb,
+	language=python,
+	aboveskip=5mm,
+	belowskip=5mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{blue},
+	keywordstyle=\color{teal},
+	commentstyle=\color{gray},
+	stringstyle=\color{olive},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3}
+
+\begin{lstlisting}
+	state_n = 25
+	action_n = 4
+	
+	class RandomAgent():
+		def __init__(self, action_n):
+			self.action_n = action_n
+			return None
+	
+		def get_action(self, state):
+			return random.randint(0, self.action_n - 1)
+	
+	class CEM():
+		def __init__(self, state_n, action_n):
+			self.state_n = state_n
+			self.action_n = action_n
+			self.policy = np.ones((self.state_n, self.action_n)) / self.action_n
+	
+		def get_action(self, state):
+			return int(np.random.choice(np.arange(self.action_n), p=self.policy[state]))
+	
+		def update_policy(self, elite_trajectories):
+			pre_policy = np.zeros((self.state_n, self.action_n))
+			
+			for trajectory in elite_trajectories:
+				for state, action in zip(trajectory['states'], trajectory['actions']):
+					pre_policy[state][action] += 1
+			
+			for state in range(self.state_n):
+				if sum(pre_policy[state]) == 0:
+					self.policy[state] = np.ones(self.action_n) / self.action_n
+				else:
+					self.policy[state] = pre_policy[state] / sum(pre_policy[state])
+			
+			return None
+	
+	def get_state(obs):
+		return int(obs[1] * np.sqrt(state_n) + obs[0])
+	
+	def get_trajectory(agent, trajectory_len):
+		trajectory = {'states':[], 'actions': [], 'total_reward': 0}
+		
+		obs = env.reset()
+		state = get_state(obs)
+		trajectory['states'].append(state)
+		
+		for _ in range(trajectory_len):
+		
+			action = agent.get_action(state)
+			trajectory['actions'].append(action)
+			
+			obs, reward, done, _ = env.step(action)
+			state = get_state(obs)
+			trajectory['total_reward'] += reward
+			
+			if done:
+				break
+		
+			trajectory['states'].append(state)
+		
+		return trajectory
+	
+	def get_elite_trajectories(trajectories, q_param):
+		total_rewards = [trajectory['total_reward'] for trajectory in trajectories]
+		quantile = np.quantile(total_rewards, q=q_param) 
+		return [trajectory for trajectory in trajectories if trajectory['total_reward'] > quantile]
+	
+	agent = CEM(state_n, action_n)
+	episode_n = 50
+	trajectory_n = 100
+	trajectory_len = 100
+	q_param = 0.9
+	
+	for _ in range(episode_n):
+		trajectories = [get_trajectory(agent, trajectory_len) for _ in range(trajectory_n)]
+		
+		mean_total_reward = np.mean([trajectory['total_reward'] for trajectory in trajectories])
+		print(mean_total_reward)
+		
+		elite_trajectories = get_elite_trajectories(trajectories, q_param)
+		
+		if len(elite_trajectories) > 0:
+			agent.update_policy(elite_trajectories)
+	
+	#test
+	obs = env.reset()
+	state = get_state(obs)
+	
+	for _ in range(trajectory_len):
+	
+		action = agent.get_action(state)
+		
+		obs, reward, done, _ = env.step(action)
+		state = get_state(obs)
+		
+		env.render()
+		time.sleep(0.5)
+		
+		if done:
+			break
+\end{lstlisting}
+
+
+
