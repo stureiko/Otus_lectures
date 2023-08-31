@@ -31,3 +31,7 @@ Ext-lib/
 *.toc
 
 DevOps/23 - Популярные фреймворки в распределенной среде/Code/pipelineModel/
+
+RL/02 - Deep Reinforcement Learning/02 - 04 Actor-Critic algorithm/Code/__pycache__/
+
+RL/02 - Deep Reinforcement Learning/02 - 04 Actor-Critic algorithm/Code/util/__pycache__/
