@@ -6,6 +6,7 @@ import torch.optim as optim
 from torch.distributions import Categorical
 import torch.multiprocessing as mp
 import time
+import numpy as np
 
 
 class ActorCritic(nn.Module):
@@ -62,8 +63,8 @@ def train(global_model, rank, max_train_ep, learning_rate, gamma, update_interva
                 td_target_lst.append([R])
             td_target_lst.reverse()
 
-            s_batch, a_batch, td_target = torch.tensor(s_lst, dtype=torch.float), torch.tensor(a_lst), \
-                torch.tensor(td_target_lst)
+            s_batch, a_batch, td_target = torch.tensor(np.array(s_lst), dtype=torch.float), torch.tensor(np.array(a_lst)), \
+                torch.tensor(np.array(td_target_lst))
             advantage = td_target - local_model.v(s_batch)
 
             pi = local_model.pi(s_batch, softmax_dim=1)
