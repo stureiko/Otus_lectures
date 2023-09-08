@@ -35,3 +35,7 @@ DevOps/23 - Популярные фреймворки в распределен�
 RL/02 - Deep Reinforcement Learning/02 - 04 Actor-Critic algorithm/Code/__pycache__/
 
 RL/02 - Deep Reinforcement Learning/02 - 04 Actor-Critic algorithm/Code/util/__pycache__/
+
+*.svg
+
+*.avif
