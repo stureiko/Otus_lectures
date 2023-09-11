@@ -1,0 +1,4 @@
+https://learn.microsoft.com/en-us/azure/architecture/data-science-process/lifecycle
+https://leands.ai
+https://miro.com/app/board/o9J_lVgyZjg=/?share_link_id=12202701482
+https://github.com/Azure/Azure-TDSP-ProjectTemplate
