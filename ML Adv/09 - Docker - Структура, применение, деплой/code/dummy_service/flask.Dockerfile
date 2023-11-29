@@ -6,8 +6,7 @@ WORKDIR /app
 
 ADD model.py model.py
 ADD dummy_flask.py dummy_flask.py
-ADD dummy_fast_api.py dummy_fast_api.py
 
-EXPOSE 5001 5002
+EXPOSE 5001
 
 CMD [ "gunicorn", "--bind", "0.0.0.0:5001", "dummy_flask:app" ]

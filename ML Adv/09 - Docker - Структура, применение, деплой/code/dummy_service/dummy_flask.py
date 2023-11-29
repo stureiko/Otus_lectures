@@ -19,12 +19,6 @@ def index():
     </body>
 </html>'''
 
-# @app.route('/guess', methods=['POST'])
-# def get_data():
-#     if request.method == 'POST':
-#         data_string = request.get_json()
-#         response = model.predict(data_string)
-#     return response
 
 @app.route('/guess')
 def get_data():
