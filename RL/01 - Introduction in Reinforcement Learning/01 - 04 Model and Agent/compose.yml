@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  webserver:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: webserver
+    hostname: inside_webserver
+    network_mode: host
+    volumes:
+      - ./app:/app
+
