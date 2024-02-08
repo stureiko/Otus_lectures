@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Iris type prediction API
+  description: Predict Iris class.
+  version: 0.0.1
+servers:
+- url: https://virtserver.swaggerhub.com/STUREIKO/Iris/0.0.1
+  description: SwaggerHub API Auto Mocking
+paths:
+  /model:
+    get:
+      summary: Return model description
+      operationId: model_get
+      responses:
+        "200":
+          description: JSON model description.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+  /prediction:
+    post:
+      summary: Predict iris class by attributes
+      operationId: prediction_post
+      responses:
+        "200":
+          description: Prediction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+components:
+  schemas:
+    inline_response_200:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Decision tree classifier
+        accuracy:
+          type: number
+          example: 0.8
+      example:
+        name: Decision tree classifier
+        accuracy: 0.8
+    inline_response_200_1:
+      type: object
+      properties:
+        class:
+          type: string
+          example: setosa
+      example:
+        class: setosa
+
