@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.MinMaxScalerModel","timestamp":1707415948446,"sparkVersion":"3.5.0","uid":"MinMaxScaler_c61b1ac23b4d","paramMap":{"outputCol":"AgeScaled","inputCol":"AgeVector"},"defaultParamMap":{"outputCol":"MinMaxScaler_c61b1ac23b4d__output","max":1.0,"min":0.0}}

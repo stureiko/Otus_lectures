@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.VectorAssembler","timestamp":1707415948842,"sparkVersion":"3.5.0","uid":"VectorAssembler_42f602a4e8be","paramMap":{"inputCols":["FareImputed"],"outputCol":"FareVector"},"defaultParamMap":{"handleInvalid":"error","outputCol":"VectorAssembler_42f602a4e8be__output"}}

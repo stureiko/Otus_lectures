@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.RobustScalerModel","timestamp":1707415948913,"sparkVersion":"3.5.0","uid":"RobustScaler_110f34348519","paramMap":{"outputCol":"FareScaled","inputCol":"FareVector"},"defaultParamMap":{"upper":0.75,"withCentering":false,"withScaling":true,"relativeError":0.001,"outputCol":"RobustScaler_110f34348519__output","lower":0.25}}
