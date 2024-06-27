@@ -1,0 +1,6 @@
+otus_postgreSQL:
+  db: demo
+  host: 45.134.254.239
+  port: 25432
+  user: Student_01
+  pass: 123456789
