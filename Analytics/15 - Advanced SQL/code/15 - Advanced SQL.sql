@@ -3,11 +3,12 @@ SELECT schemaname, tablename, tableowner
 FROM pg_catalog.pg_tables
 WHERE schemaname != 'pg_catalog' AND 
     schemaname != 'information_schema';
-   
+
     
 select schemaname, tablename
 from pg_catalog.pg_tables
 where tableowner = 'Student_01';
+
 
 select tablename
 from pg_catalog.pg_tables
@@ -31,6 +32,26 @@ WHERE amount > (SELECT avg(amount)
 LIMIT 10;
 
 
+-- EXISTS
+
+SELECT b.*
+FROM bookings b 
+WHERE EXISTS (	SELECT *
+				FROM tickets t 
+				WHERE b.book_ref = t.book_ref AND b.total_amount > 100000)
+ORDER BY b.book_ref 
+LIMIT 10;
+			
+
+SELECT b.*
+FROM bookings b 
+INNER JOIN tickets t 
+ON b.book_ref = t.book_ref 
+WHERE b.total_amount > 100000
+ORDER BY b.book_ref
+LIMIT 10;
+
+			
 -- Найти рейсы на которых были билеты бизнесс-класса
 
 -- Найдем все самолеты на которых есть билеты бизнесс-класса
@@ -47,6 +68,14 @@ WHERE aircraft_code IN (
     WHERE fare_conditions = 'Business'
 );
 
+SELECT *
+FROM seats s 
+WHERE aircraft_code IN (
+	SELECT aircraft_code  
+	FROM aircrafts a 
+	WHERE model LIKE 'Boeing%')
+ORDER BY aircraft_code
+LIMIT 10;
 
 -- соединение таблиц JOIN
 
@@ -65,6 +94,7 @@ LIMIT 10 ;
 
 -- получить посадочные места, проданные Vladimir'y в бизнесс-класс
 -- на рейсы из Москвы в период с 1 по 5 июня 2017 года
+-- 0. Что у нас вообще есть в таблице airports_data
 SELECT * 
 FROM airports_data ad 
 LIMIT 10;
@@ -73,7 +103,7 @@ LIMIT 10;
 -- 1. Получим коды московских аэропортов
 SELECT ad.airport_code, * 
 FROM airports_data ad 
-WHERE ad.city @> '{"en": "Moscow"}'
+WHERE ad.city @> '{"en": "Moscow"}'  -- распаковка json
 LIMIT 10;
 
 -- 2. Получим все рейсы вылетащющие из Москвы
@@ -184,15 +214,18 @@ INNER JOIN airports a
 ON f.arrival_airport = a.airport_code and a.city = 'Moscow';
 
 
-SELECT *
-FROM seats s 
-WHERE aircraft_code IN (
-	SELECT aircraft_code  
-	FROM aircrafts a 
-	WHERE model LIKE 'Boeing%')
-LIMIT 10;
+-- HAVING and WHERE
 
-SELECT * 
-FROM aircrafts a 
-WHERE model LIKE 'Boeing%'
-LIMIT 10;
+SELECT flight_no, count(flight_no) 
+FROM flights f
+GROUP BY flight_no 
+HAVING count(flight_no) > 20
+ORDER BY flight_no;
+
+
+SELECT flight_no, count(flight_no) 
+FROM flights f
+WHERE f.status = 'Scheduled'
+GROUP BY flight_no 
+HAVING count(flight_no) > 20
+ORDER BY flight_no;

@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS employees (
  
 -- заполняем данными
 INSERT INTO
-  employees (id, name, city,department,salary)
+  employees (id, name, city, department, salary)
 VALUES
   (11,'Дарья','Самара','hr',70),
   (12,'Борис','Самара','hr',78),
@@ -72,6 +72,13 @@ WINDOW w AS (ORDER BY salary DESC)
 ORDER BY rank;
 
 SELECT
+  DENSE_RANK() OVER w AS rank,
+  name, department, salary
+FROM employees
+WINDOW w AS (ORDER BY department)
+ORDER BY rank;
+
+SELECT
   RANK() OVER w AS rank,
   name, department, salary
 FROM employees
@@ -113,7 +120,7 @@ ORDER BY salary DESC;
 -- Если общее количество записей (10 в нашем случае) не делится на размер группы (3), 
 -- то первые группы будут крупнее последних.
 SELECT 
-	ntile(6) OVER w AS tile,
+	ntile(3) OVER w AS tile,
 	name, department, salary
 FROM employees
 WINDOW w AS (ORDER BY salary DESC)
@@ -196,7 +203,7 @@ ORDER BY department, salary, id;
 SELECT
   name, department, salary,
   sum(salary) OVER w AS fund,
-  round(salary * 100.0 / sum(salary) OVER w) || '%' AS perc
+  round(salary * 100.0 / sum(salary) OVER w) || ' %' AS perc
 FROM employees
 WINDOW w AS (PARTITION BY department)
 ORDER BY department, salary, id;
@@ -256,7 +263,9 @@ SELECT
   year, month, income, expense,
   sum(income) OVER w AS cum_income,
   sum(expense) OVER w AS cum_expense,
-  (sum(income) OVER w) - (sum(expense) OVER w) AS cum_profit
+  (sum(income) OVER w) - (sum(expense) OVER w) AS cum_profit,
+  round(avg(income) OVER w) AS cum_avg,
+  round(avg(income) OVER w) + (sum(income) OVER w) - (sum(expense) OVER w) AS avg_profit
 FROM expenses
 WINDOW w AS (
   ORDER BY year, month

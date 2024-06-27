@@ -59,6 +59,7 @@ FROM seats
 LIMIT 100;
 
 -- Получим посление 100 записей
+-- этот код вызовет ошибку - мы не указали критерий по которому определяем "последние" записи
 SELECT *
 FROM seats s
 ORDER BY DESC 
@@ -134,6 +135,9 @@ LIMIT 100;
 -- Аэропорты, которые содержат слово International и находятся в Европе
 -- отсортировать по городу по возрастанию и потом по коду по убыванию
 
+
+SELECT DISTINCT timezone
+FROM airports a;
 
 SELECT *
 FROM airports a 
