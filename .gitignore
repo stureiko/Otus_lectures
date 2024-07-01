@@ -105,3 +105,9 @@ MLBasic/18 - EDA from scratch/code/users_date.csv
 MedML/Encefalorgrams/hms-harmful-brain-activity-classification
 
 ML Adv/12 - Извлечение признаков. Fourier и Wavelet transformation/code/data/
+
+MedML/Encefalorgrams/brain-spectrograms/
+
+MedML/Encefalorgrams/models/
+
+MedML/Encefalorgrams/pca-data/
