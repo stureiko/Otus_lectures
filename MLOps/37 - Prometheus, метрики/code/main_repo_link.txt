@@ -1,0 +1,1 @@
+git@github.com:sdukshis/otus-ml-skel.git
