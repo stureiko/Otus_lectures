@@ -119,3 +119,9 @@ MLBasic/42 - ML practice/code/catboost_info/learn_error.tsv
 MLBasic/42 - ML practice/code/catboost_info/time_left.tsv
 MLBasic/42 - ML practice/code/catboost_info/learn/events.out.tfevents
 MLBasic/42 - ML practice/code/catboost_info/catboost_training.json
+ML Adv/40 - Pipelines/code/notebooks/catboost_info/learn_error.tsv
+ML Adv/40 - Pipelines/code/notebooks/catboost_info/time_left.tsv
+ML Adv/40 - Pipelines/code/notebooks/catboost_info/catboost_training.json
+ML Adv/40 - Pipelines/code/notebooks/owesome_pipeline.pkl
+ML Adv/40 - Pipelines/code/notebooks/catboost_info/learn/events.out.tfevents
+ML Adv/40 - Pipelines/images/images_is_comming.md
