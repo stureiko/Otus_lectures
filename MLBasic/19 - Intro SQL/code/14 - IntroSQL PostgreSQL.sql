@@ -3,11 +3,6 @@ SELECT schemaname, tablename, tableowner
 FROM pg_catalog.pg_tables
 WHERE schemaname != 'pg_catalog' AND 
     schemaname != 'information_schema';
-   
--- Получить все доступные схемы данных где владелец 'Student_01'
-SELECT schemaname, tablename
-FROM pg_catalog.pg_tables
-WHERE tableowner = 'Student_01';
 
 
 -- Получить имена таблиц для схемы 'bookings'

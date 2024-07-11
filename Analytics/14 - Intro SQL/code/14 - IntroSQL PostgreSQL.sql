@@ -4,11 +4,6 @@ FROM pg_catalog.pg_tables
 WHERE schemaname != 'pg_catalog' AND 
     schemaname != 'information_schema';
    
--- Получить все доступные схемы данных где владелец 'Student_01'
-SELECT schemaname, tablename
-FROM pg_catalog.pg_tables
-WHERE tableowner = 'Student_01';
-
 
 -- Получить имена таблиц для схемы 'bookings'
 SELECT tablename
@@ -16,12 +11,9 @@ FROM pg_catalog.pg_tables
 WHERE schemaname = 'bookings';
 
 
+--SET SEARCH_PATH = bookings;
+
 -- Получить все поля определенной таблицы
-SELECT column_name 
-FROM information_schema.columns 
-WHERE table_schema = 'bookings'
-  AND table_name   = 'flights';
- 
  
 
 -- или так
