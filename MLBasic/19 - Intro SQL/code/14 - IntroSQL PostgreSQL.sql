@@ -44,7 +44,7 @@ FROM flights f ;
 SELECT count(*) AS 'number of notes'
 FROM flights f ;
 
-SELECT flight_no, departure_airport AS depart
+SELECT flight_no, departure_airport AS "depart"
 FROM flights f 
 LIMIT 100;
 
@@ -129,12 +129,19 @@ LIMIT 100;
 -- Аэропорты, которые содержат слово International и находятся в Европе
 -- отсортировать по городу по возрастанию и потом по коду по убыванию
 
+SELECT *
+FROM airports a 
+LIMIT 100;
 
 SELECT *
 FROM airports a 
 WHERE airport_name LIKE '%International%'
 	AND timezone LIKE 'Europe%'
 ORDER BY city ASC, airport_code DESC
+LIMIT 100;
+
+SELECT city, airport_name
+FROM airports a 
 LIMIT 100;
 
 -- Посчитать сколько аэропортов находится в городах 
@@ -148,7 +155,7 @@ FROM airports a
 GROUP BY city 
 HAVING count(airport_name) > 1;
 
-SELECT count(*)
+SELECT *
 FROM bookings b 
 LIMIT 100;
 

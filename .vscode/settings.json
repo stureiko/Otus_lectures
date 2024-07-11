@@ -1,0 +1,27 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "stocks",
+            "username": "root",
+            "database": "stocks"
+        },
+        {
+            "previewLimit": 50,
+            "server": "45.134.254.239",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "otus-demo",
+            "database": "demo",
+            "username": "student"
+        }
+    ]
+}

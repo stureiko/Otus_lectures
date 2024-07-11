@@ -4,4 +4,3 @@ otus_postgreSQL:
   port: 5432
   user: student
   pass: 1234567890
-
