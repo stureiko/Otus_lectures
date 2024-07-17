@@ -4,16 +4,6 @@ FROM pg_catalog.pg_tables
 WHERE schemaname != 'pg_catalog' AND 
     schemaname != 'information_schema';
 
-    
-select schemaname, tablename
-from pg_catalog.pg_tables
-where tableowner = 'Student_01';
-
-
-select tablename
-from pg_catalog.pg_tables
-where schemaname = 'bookings';
-
 
 -- ПОДЗАПРОСЫ
 
@@ -32,9 +22,11 @@ WHERE amount > (SELECT avg(amount)
 LIMIT 10;
 
 
--- EXISTS
 
-SELECT *
+-- EXISTS
+-- выведем бронирования и их даты если стоимость бронирования более 100,000
+ 
+SELECT b.book_ref, b.book_date 
 FROM bookings b 
 WHERE EXISTS (	SELECT *
 				FROM tickets t 
@@ -42,9 +34,10 @@ WHERE EXISTS (	SELECT *
 ORDER BY b.book_ref 
 LIMIT 10;
 			
+-- тоже через join
 
 SELECT DISTINCT b.*
-FROM bookings b 
+FROM bookings b
 INNER JOIN tickets t 
 ON b.book_ref = t.book_ref 
 WHERE b.total_amount > 100000
@@ -86,7 +79,7 @@ FROM tickets t
 JOIN bookings b
 ON t.book_ref = b.book_ref
 AND b.book_date >= '2017-06-01'
-AND b.book_date <= '2017-06-07'
+AND b.book_date < '2017-06-07'
 AND t.passenger_name LIKE '%VLADIMIR%'
 ORDER BY b.book_date 
 LIMIT 10 ;
@@ -111,6 +104,9 @@ SELECT ad.airport_code, *
 FROM airports_data ad 
 WHERE ad.city ->> 'en'='Moscow'  -- распаковка json
 LIMIT 10;
+
+SELECT a.city
+FROM airports a ;
 
 -- 2. Получим все рейсы вылетащющие из Москвы
 SELECT DISTINCT f.flight_no, f.departure_airport AS airport_code 
@@ -226,12 +222,18 @@ SELECT flight_no, count(flight_no)
 FROM flights f
 GROUP BY flight_no 
 HAVING count(flight_no) > 20
-ORDER BY flight_no;
+ORDER BY count(flight_no) DESC;
 
 
+SELECT DISTINCT f.status 
+FROM flights f ;
+
+
+-- выведем номера рейсов которые вылетели по расписанию более 20 раз
 SELECT flight_no, count(flight_no) 
 FROM flights f
 WHERE f.status = 'Scheduled'
 GROUP BY flight_no 
 HAVING count(flight_no) > 20
-ORDER BY flight_no;
+ORDER BY flight_no DESC 
+LIMIT 30;
