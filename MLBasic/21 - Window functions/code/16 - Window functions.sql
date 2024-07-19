@@ -58,7 +58,7 @@ FROM expenses;
 SELECT
   name, department, salary
 FROM employees
-ORDER BY salary DESC;
+ORDER BY salary ;
 
 -- создаем ранг
 
@@ -168,6 +168,7 @@ ORDER BY salary;
 -- Осталось посчитать разницу между prev и salary в процентах
 SELECT
   name, department, salary,
+  lag(salary, 1) OVER w AS prev,
   round(
     		(salary - lag(salary, 1) over w)*100.0 / salary
   		) AS diff
@@ -179,6 +180,7 @@ ORDER BY salary;
 -- нужно добавить знак % к результату вычисления
 SELECT
   name, department, salary,
+  lag(salary, 1) OVER w AS prev,
   round(
     		(salary - lag(salary, 1) over w)*100.0 / salary
   		) || '%' AS diff
@@ -230,8 +232,8 @@ ORDER BY department, salary;
 -- Тогда для каждой секции фрейм будет в точности совпадать с ней
 SELECT
   name, department, salary,
-  first_value(salary) OVER w AS low,
-  last_value(salary) OVER w AS high
+  min(salary) OVER w AS low,
+  max(salary) OVER w AS high
 FROM employees
 WINDOW w AS (
   PARTITION BY department
