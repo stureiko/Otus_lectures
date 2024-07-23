@@ -128,3 +128,19 @@ ML Adv/40 - Pipelines/images/images_is_comming.md
 
 ML Adv/40 - Pipelines/code/notebooks/Old_Pipelines.ipynb
 Python/Open_day_AirFlow/mlruns/0/meta.yaml
+
+Python/Open_day_AirFlow/dags/__pycache__/
+
+Python/Open_day_AirFlow/logs/
+
+MLOps/Open_day_MLFlow/code/mlartifacts/
+
+MLOps/Open_day_MLFlow/code/mlruns/
+
+Python/Open_day_AirFlow/airflow.db
+
+Python/Open_day_AirFlow/webserver_config.py
+
+Python/Open_day_AirFlow/airflow.cfg
+
+Python/Open_day_AirFlow/standalone_admin_password.txt
