@@ -2,17 +2,17 @@ from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime, timedelta
 
-default_my_args = {
-    'owner': 'PB_Academy',
-    'retries': 5,
-    'retry_delay': timedelta(minutes=1)
+default_args = {
+    'owner': 'Otus'
 }
+
 with DAG(
-   dag_id='dag_bush_operator_example',
-   default_args= default_my_args, 
-   description='ДАГ с использованием bash оператора',
-   start_date= datetime(2024, 5, 7, 16, 50, 0),
-   schedule_interval='@daily'
+    default_args=default_args,
+    dag_id='Otus_dag_bush_operator_example',
+    schedule=None,
+    start_date=datetime(year = 2024,month = 6,day = 21, hour = 20, minute = 45),
+    catchup=False,
+    description='ДАГ с использованием bash оператора'
 ) as dag: 
     task1 = BashOperator(
         task_id = 'first_task',
