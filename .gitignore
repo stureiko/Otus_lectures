@@ -155,3 +155,5 @@ FinML/04 - DataAnalisysTools/Практика/reports/profile_report.html
 FinML/04 - DataAnalisysTools/Практика/reports/report_sweetviz.html
 RL/Open_day_SARSA_Qlearning/code/sb3_log/
 *.pyc
+ML Adv/36 - MLFlow/code/mlartifacts/
+ML Adv/36 - MLFlow/code/mlruns/
