@@ -1,0 +1,22 @@
+services:
+  minio:
+    image: bitnami/minio
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    networks:
+      - minionetwork
+    volumes:
+      - 'minio_data:/bitnami/minio/data'
+    environment:
+      - MINIO_ROOT_USER=stureiko
+      - MINIO_ROOT_PASSWORD=sture100
+      - MINIO_DEFAULT_BUCKETS=stureiko
+
+networks:
+  minionetwork:
+    driver: bridge
+
+volumes:
+  minio_data:
+    driver: local

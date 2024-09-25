@@ -1,0 +1,17 @@
+services:
+  clickhouse:
+    image: bitnami/clickhouse:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - clickhouse-network
+    ports:
+      - 8123:8123 # http
+      - 9000:9000 # tcp
+      - 9004:9004 # MySQL
+      - 9005:9005 # PostgreSQL
+
+networks:
+  clickhouse-network:
+    driver: bridge
+    
