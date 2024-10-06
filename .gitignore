@@ -165,3 +165,7 @@ Python/30 - Big data ecosystem/code/SparkML/data/
 MLPro/28 - Анализ временных рядов. Часть 2/code/data/
 MLPro/28 - Анализ временных рядов. Часть 2/code/getfile.dokpub.com/yandex/get/https:/disk.yandex.ru/d/4R8jAFyoX4Edzg
 RL/Open_day_DQN/code/sb3_log/
+.terraform/
+.terraform.lock.hcl
+key.json
+terraform.tfstate.backup
