@@ -5,6 +5,7 @@ resource "yandex_compute_instance" "vm" {
     name        = each.key
     platform_id = "standard-v1"
     zone     = "ru-central1-b"
+    folder_id = var.folder_id
   
   resources {
     cores  = 2

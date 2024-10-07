@@ -4,6 +4,9 @@ resource "yandex_compute_instance" "nixys" {
   count = var.copies
   name        = "nixys-${count.index + 1}"
   platform_id = "standard-v1"
+  zone = var.default_zone
+  folder_id = "b1gd3fqn5rn2107tg9b8"
+
 
   resources {
     cores  = 2

@@ -10,12 +10,12 @@ variable "folder_id" {
 variable "default_zone" {
 	description = "The default zone"
   type        = string
-  default     = "ru-cenral1-b"
+  default     = "ru-central1-b"
 }
 variable "zone" {
 	description = "The default zone"
   type        = string
-  default     = "ru-cenral1-b"
+  default     = "ru-central1-b"
 }
 
 

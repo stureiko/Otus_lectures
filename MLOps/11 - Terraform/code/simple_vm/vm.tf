@@ -23,30 +23,30 @@ resource "yandex_compute_instance" "nixys" {
   }
 }
 
-# resource "yandex_compute_instance" "vm-1" {
-#   name = "vm-1"
-# 	platform_id = "standard-v1"
-#   zone        = "ru-central1-b"
+resource "yandex_compute_instance" "vm-1" {
+  name = "vm-1"
+	platform_id = "standard-v1"
+  zone        = "ru-central1-b"
 
-#   resources {
-#     cores  = 2
-#     memory = 2
-#   }
+  resources {
+    cores  = 2
+    memory = 2
+  }
 
-#   boot_disk {
-#     disk_id = yandex_compute_disk.boot-disk-1.id
-#   }
+  boot_disk {
+    disk_id = yandex_compute_disk.boot-disk-1.id
+  }
 
-#   network_interface {
-#     subnet_id = yandex_vpc_subnet.subnet-1.id
-#     nat       = true
-#   }
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = true
+  }
 
-#   metadata = {
-#     ssh-keys = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
-#   }
-# }
+  metadata = {
+    ssh-keys = "ubuntu:${file("~/.ssh/id_ed25519.pub")}"
+  }
+}
 
-# output "external_ip_address_vm_1" {
-#   value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
-# }
+output "external_ip_address_vm_1" {
+  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
+}
