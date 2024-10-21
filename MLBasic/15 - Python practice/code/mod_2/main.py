@@ -7,7 +7,7 @@ import model.model as model
 
 def parse_args():
     parser = argparse.ArgumentParser(description='My ml module')
-    parser.add_argument('val_list', nargs='+', default=[1., 3.], type=float, help='Required list of values')
+    # parser.add_argument('val_list', nargs='+', default=[1., 3.], type=float, help='Required list of values')
 
     parser.add_argument('-m_1',
                         '--my_optional_1',
@@ -16,15 +16,15 @@ def parse_args():
                         help='provide an integer (default: 2)'
     )
 
-    parser.add_argument('-l','--list', nargs='+', default=[1, 3], type=int, help='<Required> Set flag', required=False)
+    parser.add_argument('-l','--list', nargs='+', default=[1, -3], type=float, help='<Required> Set flag', required=False)
 
     args = parser.parse_args()
     return args    
 
 def main():
     args = parse_args()
-    print(args.val_list)
-    res, idx = model(args.val_list)
+    print(args.list)
+    res, idx = model(args.list)
 
     if res:
         print('All elements are great than zero')
