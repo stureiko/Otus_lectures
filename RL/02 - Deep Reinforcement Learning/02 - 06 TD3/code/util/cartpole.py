@@ -23,7 +23,7 @@ class CartPole(gym.Env):
         self.action_space = gym.spaces.Box(low=-1.0, high=1.0, shape=(1,), dtype=np.float32)
         self.observation_space = gym.spaces.Box(low=np.array([-4.8000002e+00, -3.4028235e+38, -4.1887903e-01, -3.4028235e+38]), 
                                                 high=np.array([4.8000002e+00, 3.4028235e+38, 4.1887903e-01, 3.4028235e+38]), 
-                                                dtype=np.float32)
+                                                dtype=float)
 
 
     def reset(self, seed=42):
