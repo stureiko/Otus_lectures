@@ -20,3 +20,8 @@ def get_fit(data: str):
 def predict_sentiment(data: str):
     response = model.predict(data)
     return {'message': response}
+
+@app.put("/predict")
+def predict_sentiment(d: str):
+    response = model.put_pred(d)
+    return {'put_message': response}

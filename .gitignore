@@ -188,3 +188,7 @@ MLPro/12 - Pipelines/code/notebooks/catboost_info/
 MLPro/12 - Pipelines/code/notebooks/owesome_pipeline.pkl
 MLPro/12 - Pipelines/code/data/
 FinML/iss_examples/vb.net/
+ML Adv/35 - DVC/code/model.pkl
+ML Adv/35 - DVC/code/metrics.csv
+ML Adv/35 - DVC/code/yc.key
+MLBasic/41 - Feature_engineering_preprocessing/code/titanic.csv

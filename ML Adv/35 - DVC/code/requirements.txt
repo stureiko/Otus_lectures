@@ -1,0 +1,6 @@
+dvc[s3]
+pygit2
+dvclive
+pandas
+scikit-learn
+seaborn

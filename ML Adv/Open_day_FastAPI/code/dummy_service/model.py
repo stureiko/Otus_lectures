@@ -15,6 +15,12 @@ class Model:
             return False
         else:
             return len(example)
+        
+    def put_pred(self, example='')-> str:
+        if example == None:
+            return False
+        else:
+            return example
     
 def main():
     model = Model('dummy_model')
