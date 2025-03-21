@@ -12,7 +12,7 @@ class Model:
     
 def main():
     model = Model('dummy_model')
-    model.predict('test')
+    print(model.predict('test'))
 
 if __name__ == '__main__':
     main()
