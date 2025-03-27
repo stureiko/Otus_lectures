@@ -8,7 +8,7 @@ app = FastAPI()
 
 @app.get('/')
 async def get_root():
-    return {'message': 'Hello'}
+    return {'message': 'Hello my first app'}
 
 # * * * * * * * * * * * 
 # Path parameters
@@ -136,86 +136,86 @@ async def put_file(file: Annotated[bytes, File()]):
 def main():
     uvicorn.run("Open_day_fastapi_pydantic:app", port=5002, reload=True, log_level='debug')
 
-# # * * * * * * * * * * * * * * * 
-# Dependencies
+# # # * * * * * * * * * * * * * * * 
+# # Dependencies
 
-from fastapi import Depends, Cookie, Header, HTTPException
+# from fastapi import Depends, Cookie, Header, HTTPException
 
-common_app = FastAPI()
+# common_app = FastAPI()
 
-# часто используемые параметры в отдельном методе
+# # часто используемые параметры в отдельном методе
 
-async def common_parameters(q: str | None = None, skip: int = 0, limit: int = 100):
-    return {"q": q, "skip": skip, "limit": limit}
-
-
-@common_app.get("/items/")
-async def read_items(commons: Annotated[dict, Depends(common_parameters)]):
-    return commons
+# async def common_parameters(q: str | None = None, skip: int = 0, limit: int = 100):
+#     return {"q": q, "skip": skip, "limit": limit}
 
 
-@common_app.get("/users/")
-async def read_users(commons: Annotated[dict, Depends(common_parameters)]):
-    return commons
+# @common_app.get("/items/")
+# async def read_items(commons: Annotated[dict, Depends(common_parameters)]):
+#     return commons
 
 
-# Зависимости, сгруппированные в класс
-
-fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
-
-
-class CommonQueryParams:
-    def __init__(self, q: str | None = None, skip: int = 0, limit: int = 100):
-        self.q = q
-        self.skip = skip
-        self.limit = limit
+# @common_app.get("/users/")
+# async def read_users(commons: Annotated[dict, Depends(common_parameters)]):
+#     return commons
 
 
-@common_app.get("/class_items")
-async def read_items(commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]):
-    response = {}
-    if commons.q:
-        response.update({"q": commons.q})
-    items = fake_items_db[commons.skip : commons.skip + commons.limit]
-    response.update({"items": items})
-    return response
+# # Зависимости, сгруппированные в класс
 
-# Вложенные зависимости
-def query_extractor(q: str | None = None):
-    return q
+# fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
 
 
-def query_or_cookie_extractor(
-    q: Annotated[str, Depends(query_extractor)],
-    last_query: Annotated[str | None, Cookie()] = None,
-):
-    if not q:
-        return last_query
-    return q
+# class CommonQueryParams:
+#     def __init__(self, q: str | None = None, skip: int = 0, limit: int = 100):
+#         self.q = q
+#         self.skip = skip
+#         self.limit = limit
 
 
-@common_app.get("/cookie_items")
-async def read_query(
-    query_or_default: Annotated[str, Depends(query_or_cookie_extractor)]
-):
-    return {"q_or_cookie": query_or_default}
+# @common_app.get("/class_items")
+# async def read_items(commons: Annotated[CommonQueryParams, Depends(CommonQueryParams)]):
+#     response = {}
+#     if commons.q:
+#         response.update({"q": commons.q})
+#     items = fake_items_db[commons.skip : commons.skip + commons.limit]
+#     response.update({"items": items})
+#     return response
+
+# # Вложенные зависимости
+# def query_extractor(q: str | None = None):
+#     return q
 
 
-# Зависимости, использумеые для завершения работы метода, в случае если запрос не прошел валидацию
-async def verify_token(x_token: Annotated[str, Header()]):
-    if x_token != "fake-super-secret-token":
-        raise HTTPException(status_code=400, detail="X-Token header invalid")
+# def query_or_cookie_extractor(
+#     q: Annotated[str, Depends(query_extractor)],
+#     last_query: Annotated[str | None, Cookie()] = None,
+# ):
+#     if not q:
+#         return last_query
+#     return q
 
 
-async def verify_key(x_key: Annotated[str, Header()]):
-    if x_key != "fake-super-secret-key":
-        raise HTTPException(status_code=400, detail="X-Key header invalid")
-    return x_key
+# @common_app.get("/cookie_items")
+# async def read_query(
+#     query_or_default: Annotated[str, Depends(query_or_cookie_extractor)]
+# ):
+#     return {"q_or_cookie": query_or_default}
 
 
-@common_app.get("/validate_items", dependencies=[Depends(verify_token), Depends(verify_key)])
-async def read_items():
-    return [{"item": "Foo"}, {"item": "Bar"}]
+# # Зависимости, использумеые для завершения работы метода, в случае если запрос не прошел валидацию
+# async def verify_token(x_token: Annotated[str, Header()]):
+#     if x_token != "fake-super-secret-token":
+#         raise HTTPException(status_code=400, detail="X-Token header invalid")
+
+
+# async def verify_key(x_key: Annotated[str, Header()]):
+#     if x_key != "fake-super-secret-key":
+#         raise HTTPException(status_code=400, detail="X-Key header invalid")
+#     return x_key
+
+
+# @common_app.get("/validate_items", dependencies=[Depends(verify_token), Depends(verify_key)])
+# async def read_items():
+#     return [{"item": "Foo"}, {"item": "Bar"}]
 
 if __name__ == '__main__':
     main()

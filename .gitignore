@@ -192,3 +192,5 @@ ML Adv/35 - DVC/code/model.pkl
 ML Adv/35 - DVC/code/metrics.csv
 ML Adv/35 - DVC/code/yc.key
 MLBasic/41 - Feature_engineering_preprocessing/code/titanic.csv
+Python/30 - Big data ecosystem/code/SparkML/pipelineModel/
+RL/02 - Deep Reinforcement Learning/02 - 02 Deep Q-Network (DQN) алгоритм/code/sb3_log/

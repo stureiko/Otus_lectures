@@ -2,8 +2,8 @@ services:
   minio:
     image: bitnami/minio
     ports:
-      - '9000:9000'
-      - '9001:9001'
+      - '9000:9000' # API interface
+      - '9001:9001' # public web interface
     networks:
       - minionetwork
     volumes:
