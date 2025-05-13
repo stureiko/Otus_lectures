@@ -13,6 +13,6 @@ def index():
     return {"message": "FastAPI Hello World"}
 
 @app.get("/predict")
-def predict_sentiment(text: str):
+def predict_sentiment(text=''):
     response = model.predict(text)
     return response
