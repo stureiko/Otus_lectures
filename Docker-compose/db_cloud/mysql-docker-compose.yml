@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    ports:
+      - "3306:3306" # Открываем стандартный порт MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password # Задаем пароль для пользователя root
+      MYSQL_DATABASE: my_database       # Создаем базу данных при запуске
+      MYSQL_USER: user                  # Задаем нового пользователя
+      MYSQL_PASSWORD: user_password     # Пароль для нового пользователя
+    volumes:
+      - my-sql-vol:/var/lib/mysql       # Монтируем том для хранения данных
+    networks:
+      - my_db_network                  # Подключаем к сети
+    restart: always                   # Перезапускать контейнер при сбое
+
+volumes:
+  my-sql-vol:
+    # driver: local                     # Используем локальный драйвер для тома
+    # driver_opts:
+    #   type: none                       # Указываем тип тома
+    #   device: /path/to/your/data      # Путь к директории на хосте
+    #   o: bind                         # Привязываем к директории на хосте  
+    
+networks:
+  my_db_network:
+    # driver: bridge                    # Используем мостовой драйвер для сети
+    # ipam:
+    #   config:
+    #     - subnet: 172.28.0.0/16
+    #       gateway: 172.28.0.1

@@ -1,0 +1,70 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - my_db_network
+
+  cloudbeaver:
+    image: dbeaver/cloudbeaver
+    container_name: cloudbeaver
+    ports:
+      - "8978:8978"
+    volumes:
+      - cloudbeaver_data:/opt/cloudbeaver/workspace
+    depends_on:
+      - mysql
+    networks:
+      - my_db_network
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpass
+      POSTGRES_DB: pgdb
+    ports:
+      - "5455:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_db_network
+
+  pgadmin:
+    image: elestio/pgadmin
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.com
+      PGADMIN_DEFAULT_PASSWORD: adminpass
+      PGADMIN_SERVER_JSON_FILE: /pgadmin4/servers.json
+    volumes:
+      - ./pgadmin/servers.json:/pgadmin4/servers.json:ro
+      - pgadmin_data:/var/lib/pgadmin   # <-- сохраняем конфигурацию pgAdmin
+    ports:
+      - "8081:80"
+    depends_on:
+      - postgres
+      - mysql
+    networks:
+      - my_db_network
+
+volumes:
+  mysql_data:
+  postgres_data:
+  cloudbeaver_data:
+  pgadmin_data:
+
+networks:
+  my_db_network:

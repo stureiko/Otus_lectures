@@ -1,0 +1,13 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_static
+    ports:
+      - "8080:80"  # Хостовый порт 8080 → Порт 80 внутри контейнера
+    volumes:
+      - ./site:/usr/share/nginx/html:ro  # Монтируем локальную папку site
+    networks:
+      - web_net
+
+networks:
+  web_net:
