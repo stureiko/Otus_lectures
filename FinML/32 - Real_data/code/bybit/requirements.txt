@@ -1,0 +1,6 @@
+requests~=2.32.3
+pybit~=5.11.0
+backtrader~=1.9.78.123
+pandas~=2.3.0
+matplotlib~=3.10.3
+numpy~=2.2.6

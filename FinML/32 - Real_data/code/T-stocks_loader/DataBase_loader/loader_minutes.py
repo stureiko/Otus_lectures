@@ -54,12 +54,13 @@ async def download_tickers(figi, ticker_name):
                 volume INTEGER
             );
         """)
-        async for candle in client.get_all_candles(
-            figi=figi,
-            from =now() - timedelta(days=7),
-            to = now(),
-            interval = CandleInterval.CANDLE_INTERVAL_HOUR,
-        ):
+        params = {
+            'figi': figi,
+            'from': now() - timedelta(days=7),
+            'to': now(),
+            'interval': CandleInterval.CANDLE_INTERVAL_HOUR
+        }
+        async for candle in client.get_all_candles(**params):
             await store_candle_data(conn, candle, figi, ticker_name)
             print(f"Stored candle data for {ticker_name}")
         await conn.close()

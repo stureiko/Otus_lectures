@@ -1,3 +1,0 @@
-FROM hithats/python3.12-talib
-COPY loader_shares.py
-....
