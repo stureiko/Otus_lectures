@@ -1,0 +1,14 @@
+# version: '2.4'
+services:
+  fastapi_net:
+    # image: fastapi_net
+    build:
+      context: .
+      dockerfile: fastapi.Dockerfile
+    ports:
+      - 5002:5002
+    volumes:
+      - test-vol:/app/data
+
+volumes:
+  test-vol:
