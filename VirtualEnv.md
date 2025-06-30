@@ -89,7 +89,7 @@ Anaconda представляет собой специализированны�
 
 В отличии от `pip` `conda` более "интеллектуально" подходит к управлению зависимостями. Она просматривает все цепочки зависимостей и пытается самостоятельно разрешить все конфликты.
 
-Функционал `conda` достаточно богат, подробнее можно посмотреть здесь: https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html 
+Функционал `conda` достаточно богат, подробнее можно посмотреть здесь: https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html
 
 ### Базовые команды
 
