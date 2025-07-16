@@ -211,5 +211,10 @@ FinML/32 - Real_data/code/T-stocks_loader/otus_db/pgdata/
 MLBasic/17 - Pandas/code/t1.csv
 MLBasic/17 - Pandas/code/test.xlsx
 MLBasic/17 - Pandas/code/test1.xlsx
-MLOps/23 - Популярные фреймворки в распределенной среде/Code/pipelineModel
+MLOps/23 - Популярные фреймворки в распределенной среде/Code/pipelineModel/
 ML Adv/28 - Actor-Critic/code/sb3_log
+MLOps/23 - Популярные фреймворки в распределенной среде/Code/pipelineModel/metadata/.part-00000.crc
+MLOps/23 - Популярные фреймворки в распределенной среде/Code/pipelineModel/metadata/part-00000
+RL/D3RLpy/d3rlpy_data/
+RL/D3RLpy/d3rlpy_logs/
+RL/Gymnasium_video_export/sb3_log/
