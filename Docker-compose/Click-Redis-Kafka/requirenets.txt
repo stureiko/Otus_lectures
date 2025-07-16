@@ -1,0 +1,5 @@
+kafka-python==2.0.2
+redis==5.0.1
+clickhouse-driver==0.2.6
+requests==2.31.0
+prometheus-client==0.17.1
