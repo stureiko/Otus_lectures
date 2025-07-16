@@ -1,15 +1,13 @@
 services:
   minio:
-    image: minio/minio
-    container_name: minio
-    command: server /data --console-address ":9001"
+    image: bitnami/minio
     ports:
       - '9000:9000'
       - '9001:9001'
     networks:
       - minionetwork
     volumes:
-      - minio_data:/data
+      - 'minio_data:/bitnami/minio/data'
     environment:
       - MINIO_ROOT_USER=stureiko
       - MINIO_ROOT_PASSWORD=sture100
