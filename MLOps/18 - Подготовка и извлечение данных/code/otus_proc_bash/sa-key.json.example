@@ -1,0 +1,10 @@
+{
+  "access_key": {
+    "id": "ajeador607l9lmb5amlp",
+    "service_account_id": "ajefv7kmis5smc4minsj",
+    "created_at": "2024-07-24T21:30:38.722414425Z",
+    "description": "Static access key for bucket",
+    "key_id": "YOUR PUBLIC ACCESS KEY"
+  },
+  "secret": "<YOUR SECRET ACCESS KEY>"
+}

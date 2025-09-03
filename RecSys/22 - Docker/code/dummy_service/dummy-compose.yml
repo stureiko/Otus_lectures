@@ -7,8 +7,8 @@ services:
     ports:
       - "5002:5002" # Открываем порт 5002 для работы
     volumes:
-      - my-volume:/app/model-data # Монтируем том в директорию контейнера (замените путь на нужный)
+      - fastapi-my-volume:/app/model-data # Монтируем том в директорию контейнера (замените путь на нужный)
     restart: always # Автоматический перезапуск при сбое
 
 volumes:
-  my-volume: # Определяем том
+  fastapi-my-volume: # Определяем том
