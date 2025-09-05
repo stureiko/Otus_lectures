@@ -27,15 +27,17 @@ services:
         condition: service_healthy
     entrypoint: >
       /bin/sh -c '
-        echo "✅ MinIO is ready, configuring mc..." ; \
+        echo "⏳ Waiting for MinIO to be ready...";
+        sleep 2;
         echo "🔍 Getting MinIO IP...";
-        MINIO_IP=$$(getent hosts s3_mlflow | cut -d" " -f1);
+        MINIO_IP=$$(getent hosts minio | cut -d" " -f1);
         echo "✅ MinIO IP is $$MINIO_IP";
         echo "⚙️ Setting mc alias...";
-        mc alias set --insecure local http://$$MINIO_IP:9000 minio_user minio_password;
+        mc alias set --insecure local-s3 http://$$MINIO_IP:9000 minio_user minio_password;
         echo "📦 Creating bucket...";
-        mc mb -p local/mlflow-bucket || true;
-        echo "✅ Bucket mlflow-bucket ready";
+        mc mb -p local-s3/mlflow-data || true;
+        echo "✅ Bucket mlflow-data ready";
+        tail -f /dev/null
       '
     networks:
       - mlflow_net

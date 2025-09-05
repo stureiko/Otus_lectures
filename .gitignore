@@ -225,3 +225,4 @@ FinML/25 - Final enssemble/code/usd_rub-(банк-россии).xlsx
 MLOps/18 - Подготовка и извлечение данных/code/data/
 MLOps/18 - Подготовка и извлечение данных/code/sources/riiid/
 *.tfstate
+MLOps/18 - Извлечение признаков SparkML/code/Otus_feat_exty_pipe/
