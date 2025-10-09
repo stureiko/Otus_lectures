@@ -3,6 +3,7 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
+import uvicorn
 
 fake_users_db = {
     "johndoe": {
@@ -92,3 +93,9 @@ async def read_users_me(
     current_user: Annotated[User, Depends(get_current_active_user)]
 ):
     return current_user
+
+def main():
+    uvicorn.run(app=app, host='0.0.0.0', port=8005)
+    
+if __name__ == '__main__':
+    main()

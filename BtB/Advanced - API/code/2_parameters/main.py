@@ -1,3 +1,4 @@
+import uvicorn
 from enum import Enum
 from typing import Annotated
 
@@ -6,7 +7,6 @@ from fastapi import FastAPI, Query, Path
 app = FastAPI()
 
 # Path parameters
-
 
 @app.get("/items/{item_id}")
 async def read_item(item_id: int):
@@ -38,13 +38,13 @@ async def read_item(request_id):
 
 
 class RequestTypes(str, Enum):
-    service = 'service'
+    service = 'service_name'
     new_feature = 'new_feature'
 
 
 @app.get("/requests/type/{request_type}")
 async def read_item(request_type: RequestTypes):
-    return {"request_typpe": request_type.value}
+    return {"request_type": request_type.value}
 
 
 # Query string
@@ -76,3 +76,9 @@ async def read_item(req: Annotated[str, Query(min_length=5, max_length=15)]):
 @app.get("/items_validated/{request_id}")
 async def read_item(request_id: Annotated[int, Path(ge=10, lt=15)]):
     return {"request_id": request_id}
+
+def main():
+    uvicorn.run(app=app, host='0.0.0.0', port=8001)
+    
+if __name__ == '__main__':
+    main()

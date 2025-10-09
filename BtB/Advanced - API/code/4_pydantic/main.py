@@ -2,6 +2,7 @@ from typing import Annotated, Any
 
 from fastapi import FastAPI, Body
 from pydantic import BaseModel
+import uvicorn
 
 app = FastAPI()
 
@@ -39,3 +40,9 @@ async def update_item(
 ):
     results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
     return results
+
+def main():
+    uvicorn.run(app=app, host='0.0.0.0', port=8003)
+    
+if __name__ == '__main__':
+    main()
