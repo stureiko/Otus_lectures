@@ -226,3 +226,6 @@ MLOps/18 - Подготовка и извлечение данных/code/data/
 MLOps/18 - Подготовка и извлечение данных/code/sources/riiid/
 *.tfstate
 MLOps/18 - Извлечение признаков SparkML/code/Otus_feat_exty_pipe/
+NLP/11 - Text preprocessing/code/Kazakh_news/
+NLP/11 - Text preprocessing/code/stopwords/
+
