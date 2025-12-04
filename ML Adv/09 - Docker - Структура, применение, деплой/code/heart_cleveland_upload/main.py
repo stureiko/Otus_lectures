@@ -20,12 +20,13 @@ def train_model():
                                                     df['condition'].values,
                                                     test_size=0.3,
                                                     random_state=1,
-                                                    stratify=df['condition'].values)
+                                                    stratify=df['condition'].values)    #type: ignore
     pipe = make_pipeline(StandardScaler(), LogisticRegression())
     pipe.fit(X_train, y_train)  
     # Pipeline(steps=[('standardscaler', StandardScaler()),
     #             ('logisticregression', LogisticRegression())])
     score = pipe.score(X_test, y_test) 
+    # print(f'Model fitted, final score {score}')
     return pipe, score
 
 

@@ -29,7 +29,7 @@ services:
       - my_db_network
 
   postgres:
-    image: postgres:latest
+    image: postgres:14
     container_name: postgres
     environment:
       POSTGRES_USER: pguser
@@ -67,4 +67,4 @@ volumes:
   pgadmin_data:
 
 networks:
-  my_db_network:
+  my_db_network: 
