@@ -233,3 +233,6 @@ ML Adv/02 - Optimizing code/data/
 NLP/12 - Word embedding/word2v.model
 
 NLP/12 - Word embedding/twitter/
+FinML/20 - Прогнозирование Transfromers/code/lightning_logs/
+FinML/20 - Прогнозирование Transfromers/code/preds_df.csv
+MLOps/Open_day_MLFlow/code/mlflow.db
