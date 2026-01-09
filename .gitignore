@@ -236,3 +236,7 @@ NLP/12 - Word embedding/twitter/
 FinML/20 - Прогнозирование Transfromers/code/lightning_logs/
 FinML/20 - Прогнозирование Transfromers/code/preds_df.csv
 MLOps/Open_day_MLFlow/code/mlflow.db
+MLOps/21 - Воспроизводимость и версионирование MLFlow/code/mlruns/
+MLOps/21 - Воспроизводимость и версионирование MLFlow/code/mlflow.db
+*.onnx
+*.pkl
