@@ -240,3 +240,7 @@ MLOps/21 - Воспроизводимость и версионирование 
 MLOps/21 - Воспроизводимость и версионирование MLFlow/code/mlflow.db
 *.onnx
 *.pkl
+Simulator/sql-trainer/backend/.venv/
+AI-Agents Adv/Open_lesson_RAG/*tiff
+RL/Open_day_FinRL_traiding/code/results/
+RL/Open_day_FinRL_traiding/code/trained_models/
